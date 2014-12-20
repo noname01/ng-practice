@@ -28,7 +28,16 @@ myApp.controller("TodoCtrl", function($scope){
     };
 });
 
+// note: implicit dependency injection will break with code minification
 myApp.controller("CountryCtrl", function($scope, $http){
+    $scope.sortField = "name";
+    $scope.reverseSort = false;
+
+    $scope.setSort = function(newSortField){
+        $scope.reverseSort = $scope.sortField == newSortField ? !$scope.reverseSort : true;
+        $scope.sortField = newSortField;
+    };
+
     $http.get("countries.json")
         .success(function(data){
             $scope.countries = data;
