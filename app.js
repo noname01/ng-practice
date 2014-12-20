@@ -1,4 +1,27 @@
-var myApp = angular.module("myApp", []);
+var myApp = angular.module("myApp", ["ngRoute"]);
+
+// config routes, inject template into ng-view
+myApp.config(function($routeProvider){
+    $routeProvider
+        .when("/", {
+            templateUrl: "default.html"
+        })
+        .when("/hello", {
+            templateUrl: "hello.html",
+            controller: "NameCtrl"
+        })
+        .when("/todo", {
+            templateUrl: "todo.html",
+            controller: "TodoCtrl"
+        })
+        .when("/countries", {
+            templateUrl: "countries.html",
+            controller: "CountryCtrl"
+        })
+        .otherwise({
+            redirectTo: "/"
+        });
+});
 
 myApp.controller("NameCtrl", function($scope){
     var count = 0;

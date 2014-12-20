@@ -1,4 +1,4 @@
 #countriesWrap {
-    height: 400px;
+    max-height: 300px;
     overflow-y: scroll;
 }

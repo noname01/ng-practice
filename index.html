@@ -4,46 +4,11 @@
     <meta charset="UTF-8">
     <title>ng-practice</title>
     <script src="angular.min.js"></script>
+    <script src="angular-route.min.js"></script>
     <script src="app.js"></script>
     <link href="main.css" rel="stylesheet"/>
 </head>
 <body>
-    <div ng-controller="NameCtrl">
-        <h1>Hello Angular</h1>
-        <p>Name: <input ng-model="name" type="text"/></p>
-        <p>Hello {{name}}</p>
-    </div>
-
-    <div ng-controller="TodoCtrl">
-        <h1>To Do List</h1>
-        <ul>
-            <li ng-repeat="item in todos">
-                {{item}}
-                <a href="" ng-click="removeTodo(item)">remove</a>
-            </li>
-        </ul>
-
-        <form ng-submit="addTodo()">
-            <input ng-model="enteredTodo" type="text"/>
-            <input type="submit" value="Add"/>
-        </form>
-    </div>
-
-    <div ng-controller="CountryCtrl">
-        <h1>Country Table</h1>
-        Search <input ng-model="query" type="text"/>
-        <div id="countriesWrap">
-            <table>
-                <tr>
-                    <th><a href="" ng-click="setSort('name')">Country</a></th>
-                    <th><a href="" ng-click="setSort('population')">Population</a></th>
-                </tr>
-                <tr ng-repeat="country in countries | filter: query | orderBy:sortField:reverseSort">
-                    <td>{{country.name}}</td>
-                    <td>{{country.population}}</td>
-                </tr>
-            </table>
-        </div>
-    </div>
+    <div ng-view></div>
 </body>
 </html>

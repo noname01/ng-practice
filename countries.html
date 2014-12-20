@@ -1,0 +1,15 @@
+<h1>Country Table</h1>
+Search <input ng-model="query" type="text"/>
+<div id="countriesWrap">
+    <table>
+        <tr>
+            <th><a href="" ng-click="setSort('name')">Country</a></th>
+            <th><a href="" ng-click="setSort('population')">Population</a></th>
+        </tr>
+        <tr ng-repeat="country in countries | filter: query | orderBy:sortField:reverseSort">
+            <td>{{country.name}}</td>
+            <td>{{country.population | number}}</td>
+        </tr>
+    </table>
+</div>
+<p><a href="#/">back</a></p>

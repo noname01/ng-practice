@@ -1,0 +1,14 @@
+<h1>To Do List</h1>
+<ul>
+    <li ng-repeat="item in todos">
+        {{item}}
+        <a href="" ng-click="removeTodo(item)">remove</a>
+    </li>
+</ul>
+
+<form ng-submit="addTodo()">
+    <input ng-model="enteredTodo" type="text"/>
+    <input type="submit" value="Add"/>
+</form>
+
+<p><a href="#/">back</a></p>
