@@ -1,26 +1,38 @@
-var myApp = angular.module("myApp", ["ngRoute"]);
+var myApp = angular.module("myApp", ["ngRoute", "ngAnimate"]);
 
 // config routes, inject template into ng-view
 myApp.config(function($routeProvider){
     $routeProvider
         .when("/", {
-            templateUrl: "default.html"
+            templateUrl: "templates/default.html"
         })
         .when("/hello", {
-            templateUrl: "hello.html",
+            templateUrl: "templates/hello.html",
             controller: "NameCtrl"
         })
         .when("/todo", {
-            templateUrl: "todo.html",
+            templateUrl: "templates/todo.html",
             controller: "TodoCtrl"
         })
         .when("/countries", {
-            templateUrl: "countries.html",
+            templateUrl: "templates/countries.html",
             controller: "CountryCtrl"
         })
         .otherwise({
             redirectTo: "/"
         });
+});
+
+myApp.factory("countries", function($http){
+    return {
+        list: function(callback){
+            $http({
+                method: "GET",
+                url: "countries.json",
+                cache: true
+            }).success(callback);
+        }
+    };
 });
 
 myApp.controller("NameCtrl", function($scope){
@@ -52,7 +64,7 @@ myApp.controller("TodoCtrl", function($scope){
 });
 
 // note: implicit dependency injection will break with code minification
-myApp.controller("CountryCtrl", function($scope, $http){
+myApp.controller("CountryCtrl", function($scope, countries){
     $scope.sortField = "name";
     $scope.reverseSort = false;
 
@@ -61,8 +73,7 @@ myApp.controller("CountryCtrl", function($scope, $http){
         $scope.sortField = newSortField;
     };
 
-    $http.get("countries.json")
-        .success(function(data){
-            $scope.countries = data;
-        });
+    countries.list(function(data){
+        $scope.countries = data;
+    });
 });

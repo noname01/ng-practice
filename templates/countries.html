@@ -6,7 +6,7 @@ Search <input ng-model="query" type="text"/>
             <th><a href="" ng-click="setSort('name')">Country</a></th>
             <th><a href="" ng-click="setSort('population')">Population</a></th>
         </tr>
-        <tr ng-repeat="country in countries | filter: query | orderBy:sortField:reverseSort">
+        <tr ng-repeat="country in countries | filter: query | orderBy:sortField:reverseSort" class="animation">
             <td>{{country.name}}</td>
             <td>{{country.population | number}}</td>
         </tr>
