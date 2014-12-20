@@ -5,22 +5,44 @@
     <title>ng-practice</title>
     <script src="angular.min.js"></script>
     <script src="app.js"></script>
+    <link href="main.css" rel="stylesheet"/>
 </head>
-<body ng-controller="NameCtrl">
-    <h1>Hello Angular</h1>
-    <p>Name: <input ng-model="name" type="text"/></p>
-    <p>Hello {{name}}</p>
+<body>
+    <div ng-controller="NameCtrl">
+        <h1>Hello Angular</h1>
+        <p>Name: <input ng-model="name" type="text"/></p>
+        <p>Hello {{name}}</p>
+    </div>
 
-    <ul>
-        <li ng-repeat="name in names">
-            {{name}}
-            <a href="" ng-click="removeName(name)">remove</a>
-        </li>
-    </ul>
+    <div ng-controller="TodoCtrl">
+        <h1>To Do List</h1>
+        <ul>
+            <li ng-repeat="item in todos">
+                {{item}}
+                <a href="" ng-click="removeTodo(item)">remove</a>
+            </li>
+        </ul>
 
-    <form ng-submit="addName()">
-        <input ng-model="enteredName" type="text"/>
-        <input type="submit" value="Add"/>
-    </form>
+        <form ng-submit="addTodo()">
+            <input ng-model="enteredTodo" type="text"/>
+            <input type="submit" value="Add"/>
+        </form>
+    </div>
+
+    <div ng-controller="CountryCtrl">
+        <h1>Country Table</h1>
+        <div id="countriesWrap">
+            <table>
+                <tr>
+                    <th>Country</th>
+                    <th>Population</th>
+                </tr>
+                <tr ng-repeat="country in countries">
+                    <td>{{country.name}}</td>
+                    <td>{{country.population}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
 </body>
 </html>
